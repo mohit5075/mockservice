@@ -1,5 +1,8 @@
 package com.example.MockServiceApp.controller
 
+import com.fasterxml.jackson.annotation.JsonProperty
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
@@ -68,30 +71,49 @@ data class SampleRequest(
 )
 
 data class ResultOutput(
+    @JsonProperty("Name")
     val Name: String,
+    @JsonProperty("Value")
     val Value: Any?
 )
 
+data class FinalDecisionResponse(
+    val Status: String,
+    val RequestType: String,
+    val ExecuteDecisionSmartResult:ExecuteDecisionSmartResult
+)
+
 data class ExecuteDecisionSmartResult(
+    @JsonProperty("DecisionLogId")
     val DecisionLogId: String,
+    @JsonProperty("DateExecuted")
     val DateExecuted: String,
+    @JsonProperty("UniqueIdentifier")
     val UniqueIdentifier: String,
+    @JsonProperty("DecisionFlowExternalReference")
     val DecisionFlowExternalReference: String,
+    @JsonProperty("DecisionFlowId")
     val DecisionFlowId: String,
+    @JsonProperty("DecisionFlowVersionNo")
     val DecisionFlowVersionNo: String,
+    @JsonProperty("DecisionSmartResults")
     val DecisionSmartResults: List<ResultOutput>
 )
 
 data class ExecuteDecisionSmartResponse(
+    @JsonProperty("ExecuteDecisionSmartResult")
     val ExecuteDecisionSmartResult: ExecuteDecisionSmartResult
 )
 
 data class Results(
+    @JsonProperty("ExecuteDecisionSmartResponse")
     val ExecuteDecisionSmartResponse: ExecuteDecisionSmartResponse,
+    @JsonProperty("BureauResult")
     val BureauResult: Any?
 )
 
 data class ResponseData(
+    @JsonProperty("Results")
     val Results: Results
 )
 
@@ -108,7 +130,7 @@ data class SampleResponse(
 class MockController {
     @PostMapping("/process")
     fun processRequest(@RequestBody request: SampleRequest): SampleResponse {
-        return SampleResponse(
+        val response = SampleResponse(
             status = "Success "+request.UserName,
             requestType = "Finzey",
             commandType = "FinalDecision",
@@ -159,6 +181,16 @@ class MockController {
                 )
             ),
             errormessage = null
+        )
+        return response
+    }
+
+    @PostMapping("/finaldecision")
+    fun handleFinalDecision(@RequestBody request: SampleResponse): FinalDecisionResponse {
+        return FinalDecisionResponse(
+            Status = request.status,
+            RequestType = request.requestType,
+            ExecuteDecisionSmartResult = request.responseData.Results.ExecuteDecisionSmartResponse.ExecuteDecisionSmartResult
         )
     }
 }
