@@ -3,10 +3,7 @@ package com.example.MockServiceApp.controller
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 
 data class RequestData(
     val Debug: String,
@@ -192,5 +189,10 @@ class MockController {
             RequestType = request.requestType,
             ExecuteDecisionSmartResult = request.responseData.Results.ExecuteDecisionSmartResponse.ExecuteDecisionSmartResult
         )
+    }
+
+    @GetMapping("/greet")
+    fun greet(@RequestParam name: String): String {
+        return "Hello, $name!"
     }
 }
