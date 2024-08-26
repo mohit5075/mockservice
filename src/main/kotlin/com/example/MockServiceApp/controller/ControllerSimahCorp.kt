@@ -1,59 +1,133 @@
 package com.example.MockServiceApp.controller
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.web.bind.annotation.*
 
 // Request Data Class
 data class BasicInfo(
+    @JsonProperty("enquiryTypeId")
     val enquiryTypeId: String,
+
+    @JsonProperty("idIssuerID")
     val idIssuerID: String,
+
+    @JsonProperty("amount")
     val amount: String,
+
+    @JsonProperty("cityId")
     val cityId: String,
+
+    @JsonProperty("productId")
     val productId: String,
+
+    @JsonProperty("creditInstrumentId")
     val creditInstrumentId: String,
+
+    @JsonProperty("idNumber")
     val idNumber: String,
+
+    @JsonProperty("memberRefNo")
     val memberRefNo: String
 )
 
 data class GeneralInfo(
+    @JsonProperty("expiryDate")
     val expiryDate: String,
+
+    @JsonProperty("isHijriDate")
     val isHijriDate: String,
+
+    @JsonProperty("nationality")
     val nationality: String,
+
+    @JsonProperty("familyName")
     val familyName: String,
+
+    @JsonProperty("firstName")
     val firstName: String,
+
+    @JsonProperty("secondName")
     val secondName: String,
+
+    @JsonProperty("thirdName")
     val thirdName: String,
+
+    @JsonProperty("gender")
     val gender: String,
+
+    @JsonProperty("dateOfBirth")
     val dateOfBirth: String,
+
+    @JsonProperty("isHijriDateOfBirth")
     val isHijriDateOfBirth: String,
+
+    @JsonProperty("name")
     val name: String,
+
+    @JsonProperty("legalId")
     val legalId: String,
+
+    @JsonProperty("activityId")
     val activityId: String,
+
+    @JsonProperty("noOfEmployeesId")
     val noOfEmployeesId: String
 )
 
 data class ContactSimahCorp(
+    @JsonProperty("contactType")
     val contactType: String,
+
+    @JsonProperty("areaCode")
     val areaCode: String,
+
+    @JsonProperty("phoneNumber")
     val phoneNumber: String,
+
+    @JsonProperty("extension")
     val extension: String,
+
+    @JsonProperty("countryCode")
     val countryCode: String
 )
 
 data class AddressInfo(
+    @JsonProperty("addressType")
     val addressType: String,
+
+    @JsonProperty("street")
     val street: String,
+
+    @JsonProperty("buildingNumber")
     val buildingNumber: String,
+
+    @JsonProperty("zipCode")
     val zipCode: String,
+
+    @JsonProperty("additionalNumber")
     val additionalNumber: String,
+
+    @JsonProperty("city")
     val city: String,
+
+    @JsonProperty("district")
     val district: String
 )
 
 data class SimahCorpRequest(
+    @JsonProperty("basicInfo")
     val basicInfo: BasicInfo,
+
+    @JsonProperty("generalInfo")
     val generalInfo: GeneralInfo,
+
+    @JsonProperty("contacts")
     val contacts: List<ContactSimahCorp>,
+
+    @JsonProperty("addressInfo")
     val addressInfo: AddressInfo,
+
+    @JsonProperty("isNationalId")
     val isNationalId: String
 )
 

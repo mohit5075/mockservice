@@ -1,18 +1,29 @@
 package com.example.MockServiceApp.controller
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.web.bind.annotation.*
 
 // Request Data Class
 data class UnifonicSMSRequest(
+    @JsonProperty("AppSid")
     val AppSid: String,
+    @JsonProperty("SenderID")
     val SenderID: String,
+    @JsonProperty("Body")
     val Body: String,
+    @JsonProperty("Recipient")
     val Recipient: String,
+    @JsonProperty("responseType")
     val responseType: String,
+    @JsonProperty("CorrelationID")
     val CorrelationID: String,
+    @JsonProperty("baseEncode")
     val baseEncode: String,
+    @JsonProperty("MessageType")
     val MessageType: String,
+    @JsonProperty("statusCallback")
     val statusCallback: String,
+    @JsonProperty("async")
     val async: String
 )
 

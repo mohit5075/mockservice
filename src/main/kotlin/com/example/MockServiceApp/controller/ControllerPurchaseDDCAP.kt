@@ -1,21 +1,47 @@
 package com.example.MockServiceApp.controller
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.web.bind.annotation.*
 
 // Request Data Class
 data class PurchaseDDCAPRequest(
+    @JsonProperty("tran_bank_code")
     val tran_bank_code: String,
+
+    @JsonProperty("tran_client_code")
     val tran_client_code: String,
+
+    @JsonProperty("tran_deal_type")
     val tran_deal_type: String,
+
+    @JsonProperty("tran_class")
     val tran_class: String,
+
+    @JsonProperty("tran_settlement_date")
     val tran_settlement_date: String,
+
+    @JsonProperty("tran_maturity_date")
     val tran_maturity_date: String,
+
+    @JsonProperty("tran_currency")
     val tran_currency: String,
+
+    @JsonProperty("tran_principal")
     val tran_principal: String,
+
+    @JsonProperty("tran_your_reference")
     val tran_your_reference: String,
+
+    @JsonProperty("tran_commodity")
     val tran_commodity: String,
+
+    @JsonProperty("compApplId")
     val compApplId: String,
+
+    @JsonProperty("docId")
     val docId: String,
+
+    @JsonProperty("scanned")
     val scanned: String
 )
 

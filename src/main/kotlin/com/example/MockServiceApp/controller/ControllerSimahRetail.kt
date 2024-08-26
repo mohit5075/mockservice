@@ -1,73 +1,90 @@
 package com.example.MockServiceApp.controller
 
+import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.web.bind.annotation.*
 
 // Model classes
 data class SimahRetailRequest(
+    @JsonProperty("productType")
     val productType: Int,
+    @JsonProperty("amount")
     val amount: Double,
+    @JsonProperty("applicants")
     val applicants: List<Applicant>,
+    @JsonProperty("accept")
     val accept: Boolean,
+    @JsonProperty("responseType")
     val responseType: Int
 )
 
 data class Applicant(
-    val identityInfo: IdentityInfo,
-    val demographicInfo: DemographicInfo,
-    val address: Address,
-    val contact: Contact,
-    val occupation: Occupation
+    @JsonProperty("identityInfo") val identityInfo: IdentityInfo,
+    @JsonProperty("demographicInfo") val demographicInfo: DemographicInfo,
+    @JsonProperty("address") val address: Address,
+    @JsonProperty("contact") val contact: Contact,
+    @JsonProperty("occupation") val occupation: Occupation
 )
 
 data class IdentityInfo(
+    @JsonProperty("idNumber")
     val idNumber: String,
+    @JsonProperty("idType")
     val idType: String
 )
 
 data class DemographicInfo(
-    val applicantType: String,
-    val idExpiryDate: String,
-    val isHijriIDExpiryDate: Boolean,
-    val nationality: Int,
-    val maritalStatus: Int,
-    val dateOfBirth: String,
-    val isHijriDateOfBirth: Boolean,
-    val firstName: String,
-    val gender: Int,
-    val secondName: String,
-    val thirdName: String,
-    val familyName: String
+    @JsonProperty("applicantType") val applicantType: String,
+    @JsonProperty("idExpiryDate") val idExpiryDate: String,
+    @JsonProperty("isHijriIDExpiryDate") val isHijriIDExpiryDate: Boolean,
+    @JsonProperty("nationality") val nationality: Int,
+    @JsonProperty("maritalStatus") val maritalStatus: Int,
+    @JsonProperty("dateOfBirth") val dateOfBirth: String,
+    @JsonProperty("isHijriDateOfBirth") val isHijriDateOfBirth: Boolean,
+    @JsonProperty("firstName") val firstName: String,
+    @JsonProperty("gender") val gender: Int,
+    @JsonProperty("secondName") val secondName: String,
+    @JsonProperty("thirdName") val thirdName: String,
+    @JsonProperty("familyName") val familyName: String
 )
 
+
 data class Address(
+    @JsonProperty("addressType")
     val addressType: Int,
+    @JsonProperty("zipCode")
     val zipCode: Int,
+    @JsonProperty("city")
     val city: Int,
+    @JsonProperty("buildingNumber")
     val buildingNumber: Int,
+    @JsonProperty("street")
     val street: String,
+    @JsonProperty("district")
     val district: String,
+    @JsonProperty("unitNumber")
     val unitNumber: String,
+    @JsonProperty("additionalNumber")
     val additionalNumber: String
 )
 
 data class Contact(
-    val contactType: String,
-    val areaCode: String,
-    val phoneNumber: String,
-    val extension: String,
-    val countryCode: Int
+    @JsonProperty("contactType") val contactType: String,
+    @JsonProperty("areaCode") val areaCode: String,
+    @JsonProperty("phoneNumber") val phoneNumber: String,
+    @JsonProperty("extension") val extension: String,
+    @JsonProperty("countryCode") val countryCode: Int
 )
 
 data class Occupation(
-    val occupation: String,
-    val selfEmployment: Boolean,
-    val certificateRegNo: String,
-    val businessType: Int,
-    val employerType: Int,
-    val employerName: String,
-    val basicIncome: Double,
-    val totalMonthlyIncome: Double,
-    val address: Address
+    @JsonProperty("occupation") val occupation: String,
+    @JsonProperty("selfEmployment") val selfEmployment: Boolean,
+    @JsonProperty("certificateRegNo") val certificateRegNo: String,
+    @JsonProperty("businessType") val businessType: Int,
+    @JsonProperty("employerType") val employerType: Int,
+    @JsonProperty("employerName") val employerName: String,
+    @JsonProperty("basicIncome") val basicIncome: Double,
+    @JsonProperty("totalMonthlyIncome") val totalMonthlyIncome: Double,
+    @JsonProperty("address") val address: Address
 )
 
 data class SimahRetailResponse(
