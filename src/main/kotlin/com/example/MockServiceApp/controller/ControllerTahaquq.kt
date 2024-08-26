@@ -14,9 +14,13 @@ data class RequestTahaquq(
 )
 
 data class ResponseTahaquq(
+    @JsonProperty("referenceNumber")
     val referenceNumber: String,
+    @JsonProperty("id")
     val id: String,
+    @JsonProperty("mobile")
     val mobile: String,
+    @JsonProperty("isOwner")
     val isOwner: Boolean
 )
 

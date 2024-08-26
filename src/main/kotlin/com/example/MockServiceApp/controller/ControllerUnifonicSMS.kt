@@ -29,22 +29,48 @@ data class UnifonicSMSRequest(
 
 // Response Data Classes
 data class UnifonicSMSResponseData(
+    @JsonProperty("MessageID")
     val MessageID: Long,
+
+    @JsonProperty("CorrelationID")
     val CorrelationID: String,
+
+    @JsonProperty("Status")
     val Status: String,
+
+    @JsonProperty("NumberOfUnits")
     val NumberOfUnits: Int,
+
+    @JsonProperty("Cost")
     val Cost: Int,
+
+    @JsonProperty("Balance")
     val Balance: Int,
+
+    @JsonProperty("Recipient")
     val Recipient: String,
+
+    @JsonProperty("TimeCreated")
     val TimeCreated: String,
+
+    @JsonProperty("CurrencyCode")
     val CurrencyCode: String
 )
 
 data class UnifonicSMSResponse(
+    @JsonProperty("success")
     val success: Boolean,
+
+    @JsonProperty("message")
     val message: String,
+
+    @JsonProperty("errorCode")
     val errorCode: String,
+
+    @JsonProperty("Status")
     val Status: String,
+
+    @JsonProperty("data")
     val data: UnifonicSMSResponseData
 )
 
