@@ -2,88 +2,90 @@ package com.example.MockServiceApp.controller
 
 import org.springframework.web.bind.annotation.*
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 // Request Data Class
 data class HyperPayStatusRequest(
-    val checkoutid: String,
-    val merchantid: String,
-    val cardtype: String
+    @JsonProperty("checkoutid") val checkoutid: String,
+    @JsonProperty("merchantid") val merchantid: String,
+    @JsonProperty("cardtype") val cardtype: String
 )
 
 // Response Data Classes
 data class ResultDetails(
-    val ConnectorTxID1: String,
-    val clearingInstituteName: String
+    @JsonProperty("ConnectorTxID1") val ConnectorTxID1: String,
+    @JsonProperty("clearingInstituteName") val clearingInstituteName: String
 )
 
 data class Issuer(
-    val bank: String,
-    val website: String
+    @JsonProperty("bank") val bank: String,
+    @JsonProperty("website") val website: String
 )
 
 data class Card(
-    val bin: String,
-    val binCountry: String,
-    val last4Digits: String,
-    val holder: String,
-    val expiryMonth: String,
-    val expiryYear: String,
-    val issuer: Issuer,
-    val type: String,
-    val level: String,
-    val country: String,
-    val maxPanLength: String,
-    val binType: String,
-    val regulatedFlag: String
+    @JsonProperty("bin") val bin: String,
+    @JsonProperty("binCountry") val binCountry: String,
+    @JsonProperty("last4Digits") val last4Digits: String,
+    @JsonProperty("holder") val holder: String,
+    @JsonProperty("expiryMonth") val expiryMonth: String,
+    @JsonProperty("expiryYear") val expiryYear: String,
+    @JsonProperty("issuer") val issuer: Issuer,
+    @JsonProperty("type") val type: String,
+    @JsonProperty("level") val level: String,
+    @JsonProperty("country") val country: String,
+    @JsonProperty("maxPanLength") val maxPanLength: String,
+    @JsonProperty("binType") val binType: String,
+    @JsonProperty("regulatedFlag") val regulatedFlag: String
 )
 
 data class Customer(
-    val givenName: String,
-    val surname: String,
-    val email: String,
-    val ip: String
+    @JsonProperty("givenName") val givenName: String,
+    @JsonProperty("surname") val surname: String,
+    @JsonProperty("email") val email: String,
+    @JsonProperty("ip") val ip: String
 )
 
 data class Billing(
-    val street1: String,
-    val city: String,
-    val state: String,
-    val postcode: String,
-    val country: String
+    @JsonProperty("street1") val street1: String,
+    @JsonProperty("city") val city: String,
+    @JsonProperty("state") val state: String,
+    @JsonProperty("postcode") val postcode: String,
+    @JsonProperty("country") val country: String
 )
 
 data class CustomParameters(
-    val SHOPPER_EndToEndIdentity: String,
-    val CTPE_DESCRIPTOR_TEMPLATE: String?
+    @JsonProperty("SHOPPER_EndToEndIdentity") val SHOPPER_EndToEndIdentity: String,
+    @JsonProperty("CTPE_DESCRIPTOR_TEMPLATE") val CTPE_DESCRIPTOR_TEMPLATE: String?
 )
 
 data class Risk(
-    val score: String
+    @JsonProperty("score") val score: String
 )
 
 data class ResultHyperpayStatus(
-    val code: String,
-    val description: String
+    @JsonProperty("code") val code: String,
+    @JsonProperty("description") val description: String
 )
 
 data class HyperPayStatusResponse(
-    val id: String,
-    val registrationId: String,
-    val paymentType: String,
-    val paymentBrand: String,
-    val amount: String,
-    val currency: String,
-    val descriptor: String,
-    val merchantTransactionId: String,
-    val result: ResultHyperpayStatus,
-    val resultDetails: ResultDetails,
-    val card: Card,
-    val customer: Customer,
-    val billing: Billing,
-    val customParameters: CustomParameters,
-    val risk: Risk,
-    val buildNumber: String,
-    val timestamp: String,
-    val ndc: String
+    @JsonProperty("id") val id: String,
+    @JsonProperty("registrationId") val registrationId: String,
+    @JsonProperty("paymentType") val paymentType: String,
+    @JsonProperty("paymentBrand") val paymentBrand: String,
+    @JsonProperty("amount") val amount: String,
+    @JsonProperty("currency") val currency: String,
+    @JsonProperty("descriptor") val descriptor: String,
+    @JsonProperty("merchantTransactionId") val merchantTransactionId: String,
+    @JsonProperty("result") val result: ResultHyperpayStatus,
+    @JsonProperty("resultDetails") val resultDetails: ResultDetails,
+    @JsonProperty("card") val card: Card,
+    @JsonProperty("customer") val customer: Customer,
+    @JsonProperty("billing") val billing: Billing,
+    @JsonProperty("customParameters") val customParameters: CustomParameters,
+    @JsonProperty("risk") val risk: Risk,
+    @JsonProperty("buildNumber") val buildNumber: String,
+    @JsonProperty("timestamp") val timestamp: String,
+    @JsonProperty("ndc") val ndc: String
 )
 
 

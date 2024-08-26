@@ -4,28 +4,31 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 data class RequestGosiPvt(
-    val customerId: String
+    @JsonProperty("customerId") val customerId: String
 )
 
 data class EmploymentStatusInfo(
-    val fullName: String,
-    val basicWage: String,
-    val housingAllowance: String,
-    val otherAllowance: String,
-    val employerName: String,
-    val workingMonths: Int,
-    val employmentStatus: String,
-    val salaryStartingDate: String,
-    val establishmentActivity: String?,
-    val dateOfJoining: String
+    @JsonProperty("fullName") val fullName: String,
+    @JsonProperty("basicWage") val basicWage: String,
+    @JsonProperty("housingAllowance") val housingAllowance: String,
+    @JsonProperty("otherAllowance") val otherAllowance: String,
+    @JsonProperty("employerName") val employerName: String,
+    @JsonProperty("workingMonths") val workingMonths: Int,
+    @JsonProperty("employmentStatus") val employmentStatus: String,
+    @JsonProperty("salaryStartingDate") val salaryStartingDate: String,
+    @JsonProperty("establishmentActivity") val establishmentActivity: String?,
+    @JsonProperty("dateOfJoining") val dateOfJoining: String
 )
 
 data class ResponseGosiPvt(
-    val requestNumber: String,
-    val message: String,
-    val employmentStatusInfo: List<EmploymentStatusInfo>
+    @JsonProperty("requestNumber") val requestNumber: String,
+    @JsonProperty("message") val message: String,
+    @JsonProperty("employmentStatusInfo") val employmentStatusInfo: List<EmploymentStatusInfo>
 )
+
 @RestController
 class ControllerGosiPrivate {
     @PostMapping("/gosiPvt")

@@ -4,51 +4,54 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
+// Request Data Class
 data class RequestNonSaudiByIqama(
-    val iqama: String,
-    val birthDateG: String
+    @JsonProperty("iqama") val iqama: String,
+    @JsonProperty("birthDateG") val birthDateG: String
 )
 
+// Response Data Classes
 data class ResponseNonSaudiByIqama(
-    val personDependents: PersonDependents2,
-    val personIdInfo: PersonIdInfo2,
-    val personBasicInfo: PersonBasicInfo2,
-    val personAlienSponsorInfo: PersonAlienSponsorInfo
+    @JsonProperty("personDependents") val personDependents: PersonDependents2,
+    @JsonProperty("personIdInfo") val personIdInfo: PersonIdInfo2,
+    @JsonProperty("personBasicInfo") val personBasicInfo: PersonBasicInfo2,
+    @JsonProperty("personAlienSponsorInfo") val personAlienSponsorInfo: PersonAlienSponsorInfo
 )
 
 data class PersonDependents2(
-    val dependentsCount: String
+    @JsonProperty("dependentsCount") val dependentsCount: String
 )
 
 data class PersonIdInfo2(
-    val idExpirationDate: String
+    @JsonProperty("idExpirationDate") val idExpirationDate: String
 )
 
 data class PersonBasicInfo2(
-    val birthDateG: String,
-    val familyName: String,
-    val familyNameT: String,
-    val fatherName: String,
-    val fatherNameT: String,
-    val firstName: String,
-    val firstNameT: String,
-    val grandFatherName: String,
-    val grandFatherNameT: String,
-    val maritalStatusDescAr: String,
-    val nationalityDescAr: String,
-    val occupationDescAr: String,
-    val sexDescAr: String
+    @JsonProperty("birthDateG") val birthDateG: String,
+    @JsonProperty("familyName") val familyName: String,
+    @JsonProperty("familyNameT") val familyNameT: String,
+    @JsonProperty("fatherName") val fatherName: String,
+    @JsonProperty("fatherNameT") val fatherNameT: String,
+    @JsonProperty("firstName") val firstName: String,
+    @JsonProperty("firstNameT") val firstNameT: String,
+    @JsonProperty("grandFatherName") val grandFatherName: String,
+    @JsonProperty("grandFatherNameT") val grandFatherNameT: String,
+    @JsonProperty("maritalStatusDescAr") val maritalStatusDescAr: String,
+    @JsonProperty("nationalityDescAr") val nationalityDescAr: String,
+    @JsonProperty("occupationDescAr") val occupationDescAr: String,
+    @JsonProperty("sexDescAr") val sexDescAr: String
 )
 
 data class PersonAlienSponsorInfo(
-    val businessFirmInfo: BusinessFirmInfo?,
-    val personBasicInfo: PersonBasicInfo2?
+    @JsonProperty("businessFirmInfo") val businessFirmInfo: BusinessFirmInfo?,
+    @JsonProperty("personBasicInfo") val personBasicInfo: PersonBasicInfo2?
 )
 
 data class BusinessFirmInfo(
-    val firmName: String
+    @JsonProperty("firmName") val firmName: String
 )
-
 
 @RestController
 class ControllerNonSaudiByIqama {

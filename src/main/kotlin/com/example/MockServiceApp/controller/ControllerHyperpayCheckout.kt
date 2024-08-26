@@ -2,40 +2,41 @@ package com.example.MockServiceApp.controller
 
 import org.springframework.web.bind.annotation.*
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 // Request Data Class
 data class HyperPayCheckoutRequest(
-    val street1: String,
-    val city: String,
-    val state: String,
-    val country: String,
-    val postcode: String,
-    val givenName: String,
-    val surname: String,
-    val compApplId: String,
-    val cardtype: String,
-    val merchantid: String,
-    val paymentAmount: String,
-    val loanid: String
+    @JsonProperty("street1") val street1: String,
+    @JsonProperty("city") val city: String,
+    @JsonProperty("state") val state: String,
+    @JsonProperty("country") val country: String,
+    @JsonProperty("postcode") val postcode: String,
+    @JsonProperty("givenName") val givenName: String,
+    @JsonProperty("surname") val surname: String,
+    @JsonProperty("compApplId") val compApplId: String,
+    @JsonProperty("cardtype") val cardtype: String,
+    @JsonProperty("merchantid") val merchantid: String,
+    @JsonProperty("paymentAmount") val paymentAmount: String,
+    @JsonProperty("loanid") val loanid: String
 )
 
 // Response Data Class
 data class HyperPayCheckoutResponse(
-    val result: Result,
-    val buildNumber: String,
-    val timestamp: String,
-    val ndc: String,
-    val id: String,
-    val loanid: Int,
-    val compApplId: Int,
-    val paymentAmount: Double,
-    val merchantid: String,
-    val cardtype: String
+    @JsonProperty("result") val result: Result,
+    @JsonProperty("buildNumber") val buildNumber: String,
+    @JsonProperty("timestamp") val timestamp: String,
+    @JsonProperty("ndc") val ndc: String,
+    @JsonProperty("id") val id: String,
+    @JsonProperty("loanid") val loanid: Int,
+    @JsonProperty("compApplId") val compApplId: Int,
+    @JsonProperty("paymentAmount") val paymentAmount: Double,
+    @JsonProperty("merchantid") val merchantid: String,
+    @JsonProperty("cardtype") val cardtype: String
 )
 
-
 data class Result(
-    val code: String,
-    val description: String
+    @JsonProperty("code") val code: String,
+    @JsonProperty("description") val description: String
 )
 
 

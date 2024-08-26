@@ -4,19 +4,23 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
+// Request Data Class
 data class RequestNafathCreate(
-    val nationalId: String,
-    val service: String
+    @JsonProperty("nationalId") val nationalId: String,
+    @JsonProperty("service") val service: String
 )
 
+// Response Data Class
 data class ResponseNafathCreate(
-    val status: String?,
-    val timestamp: String?,
-    val message: String?,
-    val code: String?,
-    val reference: String?,
-    val transId: String,
-    val random: String
+    @JsonProperty("status") val status: String?,
+    @JsonProperty("timestamp") val timestamp: String?,
+    @JsonProperty("message") val message: String?,
+    @JsonProperty("code") val code: String?,
+    @JsonProperty("reference") val reference: String?,
+    @JsonProperty("transId") val transId: String,
+    @JsonProperty("random") val random: String
 )
 @RestController
 class ControllerNafathCreate {

@@ -2,76 +2,78 @@ package com.example.MockServiceApp.controller
 
 import org.springframework.web.bind.annotation.*
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 // Request Data Class
 data class ContractsSARequest(
-    val contractName: String,
-    val contractNumber: String,
-    val contractBeneficiaries: List<Beneficiary>,
-    val templateCode: String,
-    val templateData: String,
-    val sanadGroupRequest: SanadGroupRequest,
-    val waitingDays: Int
+    @JsonProperty("contractName") val contractName: String,
+    @JsonProperty("contractNumber") val contractNumber: String,
+    @JsonProperty("contractBeneficiaries") val contractBeneficiaries: List<Beneficiary>,
+    @JsonProperty("templateCode") val templateCode: String,
+    @JsonProperty("templateData") val templateData: String,
+    @JsonProperty("sanadGroupRequest") val sanadGroupRequest: SanadGroupRequest,
+    @JsonProperty("waitingDays") val waitingDays: Int
 )
 
 data class Beneficiary(
-    val beneficiaryIdNumber: String,
-    val beneficiaryName: String,
-    val beneficiaryNameAr: String,
-    val beneficiaryMobileNumber: String,
-    val beneficiaryEmail: String,
-    val beneficiaryRegionCode: Int,
-    val responseTimeInMinutes: Int,
-    val lang: String,
-    val signatureLang: String,
-    val shareApprovalURL: Boolean,
-    val isSignatureMethodFingerprint: Boolean,
-    val isReadOnly: Boolean
+    @JsonProperty("beneficiaryIdNumber") val beneficiaryIdNumber: String,
+    @JsonProperty("beneficiaryName") val beneficiaryName: String,
+    @JsonProperty("beneficiaryNameAr") val beneficiaryNameAr: String,
+    @JsonProperty("beneficiaryMobileNumber") val beneficiaryMobileNumber: String,
+    @JsonProperty("beneficiaryEmail") val beneficiaryEmail: String,
+    @JsonProperty("beneficiaryRegionCode") val beneficiaryRegionCode: Int,
+    @JsonProperty("responseTimeInMinutes") val responseTimeInMinutes: Int,
+    @JsonProperty("lang") val lang: String,
+    @JsonProperty("signatureLang") val signatureLang: String,
+    @JsonProperty("shareApprovalURL") val shareApprovalURL: Boolean,
+    @JsonProperty("isSignatureMethodFingerprint") val isSignatureMethodFingerprint: Boolean,
+    @JsonProperty("isReadOnly") val isReadOnly: Boolean
 )
 
 data class SanadGroupRequest(
-    val debtor: Debtor,
-    val debtor_phone_number: String,
-    val country_of_issuance: String,
-    val city_of_issuance: String,
-    val country_of_payment: String,
-    val city_of_payment: String,
-    val reference_id: String,
-    val total_value: String,
-    val currency: String,
-    val sanad_type: String,
-    val max_approve_duration: Int,
-    val issued_at: String,
-    val reason: String,
-    val sanad: List<Sanad>
+    @JsonProperty("debtor") val debtor: Debtor,
+    @JsonProperty("debtor_phone_number") val debtorPhoneNumber: String,
+    @JsonProperty("country_of_issuance") val countryOfIssuance: String,
+    @JsonProperty("city_of_issuance") val cityOfIssuance: String,
+    @JsonProperty("country_of_payment") val countryOfPayment: String,
+    @JsonProperty("city_of_payment") val cityOfPayment: String,
+    @JsonProperty("reference_id") val referenceId: String,
+    @JsonProperty("total_value") val totalValue: String,
+    @JsonProperty("currency") val currency: String,
+    @JsonProperty("sanad_type") val sanadType: String,
+    @JsonProperty("max_approve_duration") val maxApproveDuration: Int,
+    @JsonProperty("issued_at") val issuedAt: String,
+    @JsonProperty("reason") val reason: String,
+    @JsonProperty("sanad") val sanad: List<Sanad>
 )
 
 data class Debtor(
-    val national_id: String
+    @JsonProperty("national_id") val nationalId: String
 )
 
 data class Sanad(
-    val total_value: String,
-    val reference_id: String,
-    val due_type: String,
-    val due_date: String
+    @JsonProperty("total_value") val totalValue: String,
+    @JsonProperty("reference_id") val referenceId: String,
+    @JsonProperty("due_type") val dueType: String,
+    @JsonProperty("due_date") val dueDate: String
 )
 
 // Response Data Classes
 data class ContractsSAResponseData(
-    val contractNumber: String,
-    val contractStatusCode: String,
-    val createdOn: String,
-    val fileSharingLink: String,
-    val unSignFileLink: String
+    @JsonProperty("contractNumber") val contractNumber: String,
+    @JsonProperty("contractStatusCode") val contractStatusCode: String,
+    @JsonProperty("createdOn") val createdOn: String,
+    @JsonProperty("fileSharingLink") val fileSharingLink: String,
+    @JsonProperty("unSignFileLink") val unSignFileLink: String
 )
 
 data class ContractsSAResponse(
-    val data: ContractsSAResponseData,
-    val messages: List<String>,
-    val statusCode: String?,
-    val httpCode: Int,
-    val succeeded: Boolean,
-    val allItemCount: Int
+    @JsonProperty("data") val data: ContractsSAResponseData,
+    @JsonProperty("messages") val messages: List<String>,
+    @JsonProperty("statusCode") val statusCode: String?,
+    @JsonProperty("httpCode") val httpCode: Int,
+    @JsonProperty("succeeded") val succeeded: Boolean,
+    @JsonProperty("allItemCount") val allItemCount: Int
 )
 
 // Controller for ContractsSA

@@ -4,13 +4,15 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 data class RequestConfirmSaleDDCap(
-    val tran_stage_code: String,
-    val compApplId: String
+    @JsonProperty("tran_stage_code") val tranStageCode: String,
+    @JsonProperty("compApplId") val compApplId: String
 )
 
 data class ResponseConfirmSaleDDCap(
-    val message: String
+    @JsonProperty("message") val message: String
 )
 
 @RestController

@@ -4,32 +4,71 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 data class RequestAmLock(
+    @JsonProperty("requestId")
     val requestId: String,
+
+    @JsonProperty("prospectType")
     val prospectType: String,
+
+    @JsonProperty("prospectId")
     val prospectId: String,
+
+    @JsonProperty("prospectName")
     val prospectName: String,
+
+    @JsonProperty("countryofNationality")
     val countryofNationality: String,
+
+    @JsonProperty("prospectIdentityNumber")
     val prospectIdentityNumber: String,
+
+    @JsonProperty("dateofBirth")
     val dateofBirth: String,
+
+    @JsonProperty("countryofResidence")
     val countryofResidence: String
 )
 
 data class MatchDetail(
+    @JsonProperty("sourceField")
     val sourceField: String,
+
+    @JsonProperty("sourceData")
     val sourceData: String,
+
+    @JsonProperty("matchField")
     val matchField: String,
+
+    @JsonProperty("matchData")
     val matchData: String,
+
+    @JsonProperty("listId")
     val listId: String,
+
+    @JsonProperty("matchScore")
     val matchScore: String,
+
+    @JsonProperty("listName")
     val listName: String
 )
 
 data class ResponseAmLock(
+    @JsonProperty("responseCode")
     val responseCode: String,
+
+    @JsonProperty("requestId")
     val requestId: String,
+
+    @JsonProperty("prospectId")
     val prospectId: String,
+
+    @JsonProperty("message")
     val message: String,
+
+    @JsonProperty("matchDetails")
     val matchDetails: List<MatchDetail>
 )
 

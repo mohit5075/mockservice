@@ -4,53 +4,55 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
+import com.fasterxml.jackson.annotation.JsonProperty
+
 data class RequestGosiGovt(
-    val customerId: String,
-    val birthDate: String
+    @JsonProperty("customerId") val customerId: String,
+    @JsonProperty("birthDate") val birthDate: String
 )
 
 data class PersonalInfo(
-    val employeeNameAr: String,
-    val employeeNameEn: String
+    @JsonProperty("employeeNameAr") val employeeNameAr: String,
+    @JsonProperty("employeeNameEn") val employeeNameEn: String
 )
 
 data class EmployerInfo(
-    val agencyCode: String,
-    val agencyName: String
+    @JsonProperty("agencyCode") val agencyCode: String,
+    @JsonProperty("agencyName") val agencyName: String
 )
 
 data class BankInfo(
-    val accountNumber: String,
-    val bankCode: String,
-    val bankName: String
+    @JsonProperty("accountNumber") val accountNumber: String,
+    @JsonProperty("bankCode") val bankCode: String,
+    @JsonProperty("bankName") val bankName: String
 )
 
 data class EmploymentInfo(
-    val employeeJobNumber: String,
-    val employeeJobTitle: String,
-    val agencyEmploymentDate: String
+    @JsonProperty("employeeJobNumber") val employeeJobNumber: String,
+    @JsonProperty("employeeJobTitle") val employeeJobTitle: String,
+    @JsonProperty("agencyEmploymentDate") val agencyEmploymentDate: String
 )
 
 data class PayslipInfo(
-    val payMonth: String,
-    val basicSalary: String,
-    val totalAllownces: String,
-    val totalDeductions: String,
-    val netSalary: String
+    @JsonProperty("payMonth") val payMonth: String,
+    @JsonProperty("basicSalary") val basicSalary: String,
+    @JsonProperty("totalAllownces") val totalAllownces: String,
+    @JsonProperty("totalDeductions") val totalDeductions: String,
+    @JsonProperty("netSalary") val netSalary: String
 )
 
 data class DataItem(
-    val personalInfo: PersonalInfo,
-    val employerInfo: EmployerInfo,
-    val bankInfo: BankInfo,
-    val employmentInfo: EmploymentInfo,
-    val payslipInfo: PayslipInfo
+    @JsonProperty("personalInfo") val personalInfo: PersonalInfo,
+    @JsonProperty("employerInfo") val employerInfo: EmployerInfo,
+    @JsonProperty("bankInfo") val bankInfo: BankInfo,
+    @JsonProperty("employmentInfo") val employmentInfo: EmploymentInfo,
+    @JsonProperty("payslipInfo") val payslipInfo: PayslipInfo
 )
 
 data class ResponseGosiGovt(
-    val requestNumber: String,
-    val message: String,
-    val data: List<DataItem>
+    @JsonProperty("requestNumber") val requestNumber: String,
+    @JsonProperty("message") val message: String,
+    @JsonProperty("data") val data: List<DataItem>
 )
 
 @RestController
