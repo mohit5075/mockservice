@@ -131,142 +131,141 @@ data class SimahCorpRequest(
     val isNationalId: String
 )
 
-// Response Data Classes
 data class EnquiryTypeSimahCorp(
-    val enqTypeCode: String,
-    val enqTypeDescriptionAr: String,
-    val enqTypeDescriptionEn: String
+    @JsonProperty("enqTypeCode") val enqTypeCode: String,
+    @JsonProperty("enqTypeDescriptionAr") val enqTypeDescriptionAr: String,
+    @JsonProperty("enqTypeDescriptionEn") val enqTypeDescriptionEn: String
 )
 
 data class ProductType(
-    val productId: Int,
-    val code: String,
-    val textEn: String,
-    val textAr: String
+    @JsonProperty("productId") val productId: Int,
+    @JsonProperty("code") val code: String,
+    @JsonProperty("textEn") val textEn: String,
+    @JsonProperty("textAr") val textAr: String
 )
 
 data class CreditFacility(
-    val code: String,
-    val nameEn: String,
-    val nameAr: String
+    @JsonProperty("code") val code: String,
+    @JsonProperty("nameEn") val nameEn: String,
+    @JsonProperty("nameAr") val nameAr: String
 )
 
 data class IssuerSimahCorp(
-    val idIssuerCode: String,
-    val idIssuerNameEN: String,
-    val idIsuuerNameAR: String
+    @JsonProperty("idIssuerCode") val idIssuerCode: String,
+    @JsonProperty("idIssuerNameEN") val idIssuerNameEN: String,
+    @JsonProperty("idIsuuerNameAR") val idIsuuerNameAR: String
 )
 
 data class City(
-    val cityID: Int,
-    val cityNameEN: String,
-    val cityNameAR: String,
-    val cityCode: String
+    @JsonProperty("cityID") val cityID: Int,
+    @JsonProperty("cityNameEN") val cityNameEN: String,
+    @JsonProperty("cityNameAR") val cityNameAR: String,
+    @JsonProperty("cityCode") val cityCode: String
 )
 
 data class LegalForm(
-    val legalFormCode: String,
-    val legalFormNameEN: String,
-    val legalFormNameAR: String
+    @JsonProperty("legalFormCode") val legalFormCode: String,
+    @JsonProperty("legalFormNameEN") val legalFormNameEN: String,
+    @JsonProperty("legalFormNameAR") val legalFormNameAR: String
 )
 
 data class BusinessActivity(
-    val industryNameEN: String,
-    val industryNameAR: String
+    @JsonProperty("industryNameEN") val industryNameEN: String,
+    @JsonProperty("industryNameAR") val industryNameAR: String
 )
 
 data class DemographicsDetail(
-    val name: String?,
-    val nameAr: String,
-    val date: String,
-    val issuer: IssuerSimahCorp,
-    val idCode: String,
-    val isscit: City,
-    val expDate: String,
-    val legalForm: LegalForm,
-    val dateEstablished: String,
-    val businessActivity: BusinessActivity,
-    val capital: String,
-    val nationalNo: String
+    @JsonProperty("name") val name: String?,
+    @JsonProperty("nameAr") val nameAr: String,
+    @JsonProperty("date") val date: String,
+    @JsonProperty("issuer") val issuer: IssuerSimahCorp,
+    @JsonProperty("idCode") val idCode: String,
+    @JsonProperty("isscit") val isscit: City,
+    @JsonProperty("expDate") val expDate: String,
+    @JsonProperty("legalForm") val legalForm: LegalForm,
+    @JsonProperty("dateEstablished") val dateEstablished: String,
+    @JsonProperty("businessActivity") val businessActivity: BusinessActivity,
+    @JsonProperty("capital") val capital: String,
+    @JsonProperty("nationalNo") val nationalNo: String
 )
 
 data class Enquiry(
-    val enquiryDate: String,
-    val enquirer: EnquirerSimahCorp,
-    val enquiryType: EnquiryTypeSimahCorp,
-    val memberReference: String,
-    val product: ProductType,
-    val amount: String
+    @JsonProperty("enquiryDate") val enquiryDate: String,
+    @JsonProperty("enquirer") val enquirer: EnquirerSimahCorp,
+    @JsonProperty("enquiryType") val enquiryType: EnquiryTypeSimahCorp,
+    @JsonProperty("memberReference") val memberReference: String,
+    @JsonProperty("product") val product: ProductType,
+    @JsonProperty("amount") val amount: String
 )
 
 data class EnquirerSimahCorp(
-    val memberCode: String,
-    val memberNameEN: String,
-    val memberNameAR: String
+    @JsonProperty("memberCode") val memberCode: String,
+    @JsonProperty("memberNameEN") val memberNameEN: String,
+    @JsonProperty("memberNameAR") val memberNameAR: String
 )
 
 data class SimahCorpResponse(
-    val message: String,
-    val isSuccess: Boolean,
-    val data: Data
+    @JsonProperty("message") val message: String,
+    @JsonProperty("isSuccess") val isSuccess: Boolean,
+    @JsonProperty("data") val data: Data
 )
 
 data class Data(
-    val companyResponseJson: CompanyResponseJson,
-    val referenceNumber: String
+    @JsonProperty("companyResponseJson") val companyResponseJson: CompanyResponseJson,
+    @JsonProperty("referenceNumber") val referenceNumber: String
 )
 
 data class CompanyResponseJson(
-    val reportDetail: ReportDetail,
-    val demographicsDetail: DemographicsDetail,
-    val previousEnquiries: List<Enquiry>,
-    val creditInstrumentSummary: CreditInstrumentSummary,
-    val facilitiesSummaryLevel: FacilitiesSummaryLevel,
-    val creditInstrumentDetailsMasterViews: List<Any>,
-    val serviceCreditInstrumentDetailsMasterViews: List<Any>,
-    val serviceCreditInstrumentSummary: List<Any>,
-    val nonBorrowingLimits: Any?,
-    val tradeCreditSalesCiPayablesSummary: Any?,
-    val tradeCreditSalesPayableDetails: List<Any>,
-    val tradeCreditSalesCiReceivablesSummary: Any?,
-    val tradeCreditReceiveablesDetails: List<Any>,
-    val defaults: Any?,
-    val companyBouncedCheques: Any?,
-    val keyStakeHolders: Any?,
-    val guarantorKeyStakeHolders: Any?,
-    val corporateOwnership: CorporateOwnership,
-    val judgements: List<Any>,
-    val narratives: List<Any>,
-    val asNarrative: List<Any>
+    @JsonProperty("reportDetail") val reportDetail: ReportDetail,
+    @JsonProperty("demographicsDetail") val demographicsDetail: DemographicsDetail,
+    @JsonProperty("previousEnquiries") val previousEnquiries: List<Enquiry>,
+    @JsonProperty("creditInstrumentSummary") val creditInstrumentSummary: CreditInstrumentSummary,
+    @JsonProperty("facilitiesSummaryLevel") val facilitiesSummaryLevel: FacilitiesSummaryLevel,
+    @JsonProperty("creditInstrumentDetailsMasterViews") val creditInstrumentDetailsMasterViews: List<Any>,
+    @JsonProperty("serviceCreditInstrumentDetailsMasterViews") val serviceCreditInstrumentDetailsMasterViews: List<Any>,
+    @JsonProperty("serviceCreditInstrumentSummary") val serviceCreditInstrumentSummary: List<Any>,
+    @JsonProperty("nonBorrowingLimits") val nonBorrowingLimits: Any?,
+    @JsonProperty("tradeCreditSalesCiPayablesSummary") val tradeCreditSalesCiPayablesSummary: Any?,
+    @JsonProperty("tradeCreditSalesPayableDetails") val tradeCreditSalesPayableDetails: List<Any>,
+    @JsonProperty("tradeCreditSalesCiReceivablesSummary") val tradeCreditSalesCiReceivablesSummary: Any?,
+    @JsonProperty("tradeCreditReceiveablesDetails") val tradeCreditReceiveablesDetails: List<Any>,
+    @JsonProperty("defaults") val defaults: Any?,
+    @JsonProperty("companyBouncedCheques") val companyBouncedCheques: Any?,
+    @JsonProperty("keyStakeHolders") val keyStakeHolders: Any?,
+    @JsonProperty("guarantorKeyStakeHolders") val guarantorKeyStakeHolders: Any?,
+    @JsonProperty("corporateOwnership") val corporateOwnership: CorporateOwnership,
+    @JsonProperty("judgements") val judgements: List<Any>,
+    @JsonProperty("narratives") val narratives: List<Any>,
+    @JsonProperty("asNarrative") val asNarrative: List<Any>
 )
 
 data class ReportDetail(
-    val reportDate: String,
-    val enquiryType: EnquiryTypeSimahCorp,
-    val productType: ProductType,
-    val enquiryNumber: String,
-    val referenceNumber: String,
-    val amount: String,
-    val creditFacility: CreditFacility,
-    val governmentGuaranteed: String
+    @JsonProperty("reportDate") val reportDate: String,
+    @JsonProperty("enquiryType") val enquiryType: EnquiryTypeSimahCorp,
+    @JsonProperty("productType") val productType: ProductType,
+    @JsonProperty("enquiryNumber") val enquiryNumber: String,
+    @JsonProperty("referenceNumber") val referenceNumber: String,
+    @JsonProperty("amount") val amount: String,
+    @JsonProperty("creditFacility") val creditFacility: CreditFacility,
+    @JsonProperty("governmentGuaranteed") val governmentGuaranteed: String
 )
 
 data class CreditInstrumentSummary(
-    val nonFunded: Any?,
-    val funded: Any?,
-    val totalLimit: Any?,
-    val totalUtilization: Any?,
-    val totalPastDue: String
+    @JsonProperty("nonFunded") val nonFunded: Any?,
+    @JsonProperty("funded") val funded: Any?,
+    @JsonProperty("totalLimit") val totalLimit: Any?,
+    @JsonProperty("totalUtilization") val totalUtilization: Any?,
+    @JsonProperty("totalPastDue") val totalPastDue: String
 )
 
 data class FacilitiesSummaryLevel(
-    val levelOneCISummary: List<Any>,
-    val levelTwoCISummary: List<Any>
+    @JsonProperty("levelOneCISummary") val levelOneCISummary: List<Any>,
+    @JsonProperty("levelTwoCISummary") val levelTwoCISummary: List<Any>
 )
 
 data class CorporateOwnership(
-    val parents: List<Any>,
-    val subsidiarieses: List<Any>
+    @JsonProperty("parents") val parents: List<Any>,
+    @JsonProperty("subsidiarieses") val subsidiarieses: List<Any>
 )
 
 

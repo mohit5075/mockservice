@@ -14,31 +14,31 @@ data class RequestSaudiByNin(
 )
 
 data class ResponseSaudiByNin(
-    val personDependents: PersonDependents,
-    val personIdInfo: PersonIdInfo,
-    val personBasicInfo: PersonBasicInfo
+    @JsonProperty("personDependents") val personDependents: PersonDependents,
+    @JsonProperty("personIdInfo") val personIdInfo: PersonIdInfo,
+    @JsonProperty("personBasicInfo") val personBasicInfo: PersonBasicInfo
 )
 
 data class PersonDependents(
-    val dependentsCount: String
+    @JsonProperty("dependentsCount") val dependentsCount: String
 )
 
 data class PersonIdInfo(
-    val idExpirationDate: LocalDateTime
+    @JsonProperty("idExpirationDate") val idExpirationDate: LocalDateTime
 )
 
 data class PersonBasicInfo(
-    val birthDateG: LocalDateTime,
-    val familyName: String,
-    val familyNameT: String,
-    val fatherName: String,
-    val fatherNameT: String,
-    val firstNameT: String,
-    val firstName: String,
-    val grandFatherName: String,
-    val grandFatherNameT: String,
-    val maritalStatusDescAr: String,
-    val sexDescAr: String
+    @JsonProperty("birthDateG") val birthDateG: LocalDateTime,
+    @JsonProperty("familyName") val familyName: String,
+    @JsonProperty("familyNameT") val familyNameT: String,
+    @JsonProperty("fatherName") val fatherName: String,
+    @JsonProperty("fatherNameT") val fatherNameT: String,
+    @JsonProperty("firstNameT") val firstNameT: String,
+    @JsonProperty("firstName") val firstName: String,
+    @JsonProperty("grandFatherName") val grandFatherName: String,
+    @JsonProperty("grandFatherNameT") val grandFatherNameT: String,
+    @JsonProperty("maritalStatusDescAr") val maritalStatusDescAr: String,
+    @JsonProperty("sexDescAr") val sexDescAr: String
 )
 
 @RestController
