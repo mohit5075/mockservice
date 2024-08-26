@@ -14,11 +14,11 @@ data class ResponseAddressByNin(
 )
 
 data class PersonNationalAddressInfo(
-    val Addresses: List<Address>,
+    val Addresses: List<AddressNin>,
     val PostCode: String?
 )
 
-data class Address(
+data class AddressNin(
     val ObjLatLng: String,
     val BuildingNumber: String,
     val Street: String,
@@ -38,7 +38,7 @@ class ControllerAddressByNin {
         return ResponseAddressByNin(
             personNationalAddressInfo = PersonNationalAddressInfo(
                 Addresses = listOf(
-                    Address(
+                    AddressNin(
                         ObjLatLng = "46.84191378 24.69679989",
                         BuildingNumber = "2796",
                         Street = "Al Taim ",

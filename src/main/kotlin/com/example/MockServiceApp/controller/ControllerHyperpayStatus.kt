@@ -60,7 +60,7 @@ data class Risk(
     val score: String
 )
 
-data class Result(
+data class ResultHyperpayStatus(
     val code: String,
     val description: String
 )
@@ -74,7 +74,7 @@ data class HyperPayStatusResponse(
     val currency: String,
     val descriptor: String,
     val merchantTransactionId: String,
-    val result: Result,
+    val result: ResultHyperpayStatus,
     val resultDetails: ResultDetails,
     val card: Card,
     val customer: Customer,
@@ -101,7 +101,7 @@ class ControllerHyperpayStatus {
             currency = "SAR",
             descriptor = "6285.8382.9364 Alpha Arabia Finance",
             merchantTransactionId = "313",
-            result = Result(
+            result = ResultHyperpayStatus(
                 code = "000.100.110",
                 description = "Request successfully processed in Merchant in Integrator Test Mode"
             ),

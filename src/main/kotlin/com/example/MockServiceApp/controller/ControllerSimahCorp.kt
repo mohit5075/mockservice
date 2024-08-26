@@ -31,7 +31,7 @@ data class GeneralInfo(
     val noOfEmployeesId: String
 )
 
-data class Contact(
+data class ContactSimahCorp(
     val contactType: String,
     val areaCode: String,
     val phoneNumber: String,
@@ -52,13 +52,13 @@ data class AddressInfo(
 data class SimahCorpRequest(
     val basicInfo: BasicInfo,
     val generalInfo: GeneralInfo,
-    val contacts: List<Contact>,
+    val contacts: List<ContactSimahCorp>,
     val addressInfo: AddressInfo,
     val isNationalId: String
 )
 
 // Response Data Classes
-data class EnquiryType(
+data class EnquiryTypeSimahCorp(
     val enqTypeCode: String,
     val enqTypeDescriptionAr: String,
     val enqTypeDescriptionEn: String
@@ -77,7 +77,7 @@ data class CreditFacility(
     val nameAr: String
 )
 
-data class Issuer(
+data class IssuerSimahCorp(
     val idIssuerCode: String,
     val idIssuerNameEN: String,
     val idIsuuerNameAR: String
@@ -105,7 +105,7 @@ data class DemographicsDetail(
     val name: String?,
     val nameAr: String,
     val date: String,
-    val issuer: Issuer,
+    val issuer: IssuerSimahCorp,
     val idCode: String,
     val isscit: City,
     val expDate: String,
@@ -118,14 +118,14 @@ data class DemographicsDetail(
 
 data class Enquiry(
     val enquiryDate: String,
-    val enquirer: Enquirer,
-    val enquiryType: EnquiryType,
+    val enquirer: EnquirerSimahCorp,
+    val enquiryType: EnquiryTypeSimahCorp,
     val memberReference: String,
     val product: ProductType,
     val amount: String
 )
 
-data class Enquirer(
+data class EnquirerSimahCorp(
     val memberCode: String,
     val memberNameEN: String,
     val memberNameAR: String
@@ -168,7 +168,7 @@ data class CompanyResponseJson(
 
 data class ReportDetail(
     val reportDate: String,
-    val enquiryType: EnquiryType,
+    val enquiryType: EnquiryTypeSimahCorp,
     val productType: ProductType,
     val enquiryNumber: String,
     val referenceNumber: String,
@@ -209,7 +209,7 @@ class ControllerSimahCorp {
                 companyResponseJson = CompanyResponseJson(
                     reportDetail = ReportDetail(
                         reportDate = "16/02/2024 18.30.30",
-                        enquiryType = EnquiryType(
+                        enquiryType = EnquiryTypeSimahCorp(
                             enqTypeCode = "NA",
                             enqTypeDescriptionAr = "طلب جديد",
                             enqTypeDescriptionEn = "New Application"
@@ -234,7 +234,7 @@ class ControllerSimahCorp {
                         name = null,
                         nameAr = "شركة الفا العربية للتمويل قابضة",
                         date = "29/08/2023",
-                        issuer = Issuer(
+                        issuer = IssuerSimahCorp(
                             idIssuerCode = "MC",
                             idIssuerNameEN = "Ministry of Commerce and Investment",
                             idIsuuerNameAR = "وزارة التجارة والاستثمار"
@@ -263,12 +263,12 @@ class ControllerSimahCorp {
                     previousEnquiries = listOf(
                         Enquiry(
                             enquiryDate = "16/02/2024",
-                            enquirer = Enquirer(
+                            enquirer = EnquirerSimahCorp(
                                 memberCode = "AAHA",
                                 memberNameEN = "Alpha Arabia Finance",
                                 memberNameAR = "شركة الفا العربية للتمويل قابضة"
                             ),
-                            enquiryType = EnquiryType(
+                            enquiryType = EnquiryTypeSimahCorp(
                                 enqTypeCode = "NA",
                                 enqTypeDescriptionAr = "طلب جديد",
                                 enqTypeDescriptionEn = "New Application"

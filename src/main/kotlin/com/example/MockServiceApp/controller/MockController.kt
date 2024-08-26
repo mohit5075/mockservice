@@ -4,7 +4,12 @@ import com.fasterxml.jackson.annotation.JsonProperty
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.*
-
+data class AuthorizeData(
+    @JsonProperty("accessToken")
+    val accessToken: String,
+    @JsonProperty("tenant-id")
+    val tenantId: String
+)
 data class RequestData(
     val Debug: String,
     val Refresh: Boolean,
@@ -195,4 +200,10 @@ class MockController {
     fun greet(@RequestParam name: String): String {
         return "Hello, $name!"
     }
+
+    @PostMapping("/authorize")
+    fun authorize(@RequestBody data: AuthorizeData): String {
+        return ""
+    }
+
 }
