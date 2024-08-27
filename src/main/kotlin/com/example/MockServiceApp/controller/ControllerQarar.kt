@@ -1,8 +1,6 @@
 package com.example.MockServiceApp.controller
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import org.slf4j.Logger
-import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.*
 data class AuthorizeData(
     @JsonProperty("accessToken")
@@ -79,6 +77,15 @@ data class ResultOutput(
     val Value: Any?
 )
 
+data class CallbackRequest(
+    @JsonProperty("data")
+    val data : Any,
+    @JsonProperty("message")
+    val message: String,
+    @JsonProperty("statusCode")
+    val statusCode: Int
+)
+
 data class FinalDecisionResponse(
     val Status: String,
     val RequestType: String,
@@ -120,15 +127,19 @@ data class ResponseData(
 )
 
 data class SampleResponse(
+    @JsonProperty("status")
     val status: String,
+    @JsonProperty("requestType")
     val requestType: String,
+    @JsonProperty("commandType")
     val commandType: String,
+    @JsonProperty("responseData")
     val responseData: ResponseData,
+    @JsonProperty("errormessage")
     val errormessage: Any?
 )
 
 @RestController
-@RequestMapping("/mock")
 class MockController {
     @PostMapping("/process")
     fun processRequest(@RequestBody request: SampleRequest): SampleResponse {
@@ -196,14 +207,9 @@ class MockController {
         )
     }
 
-    @GetMapping("/greet")
-    fun greet(@RequestParam name: String): String {
-        return "Hello, $name!"
-    }
-
-    @PostMapping("/authorize")
-    fun authorize(@RequestBody data: AuthorizeData): String {
-        return ""
+    @PostMapping("/callback")
+    fun callback(@RequestBody data: CallbackRequest): CallbackRequest {
+        return data
     }
 
 }
