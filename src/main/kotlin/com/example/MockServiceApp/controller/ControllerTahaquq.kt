@@ -25,8 +25,6 @@ data class ResponseTahaquq(
 )
 
 @RestController
-@RequestMapping("/mock")
-
 class ControllerTahaquq {
 
     @PostMapping("/tahaquq")
