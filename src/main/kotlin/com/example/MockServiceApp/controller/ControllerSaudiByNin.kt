@@ -24,11 +24,11 @@ data class PersonDependents(
 )
 
 data class PersonIdInfo(
-    @JsonProperty("idExpirationDate") val idExpirationDate: LocalDateTime
+    @JsonProperty("idExpirationDate") val idExpirationDate: String
 )
 
 data class PersonBasicInfo(
-    @JsonProperty("birthDateG") val birthDateG: LocalDateTime,
+    @JsonProperty("birthDateG") val birthDateG: String,
     @JsonProperty("familyName") val familyName: String,
     @JsonProperty("familyNameT") val familyNameT: String,
     @JsonProperty("fatherName") val fatherName: String,
@@ -51,10 +51,10 @@ class ControllerSaudiByNin {
                 dependentsCount = "4"
             ),
             personIdInfo = PersonIdInfo(
-                idExpirationDate = LocalDateTime.parse("2030-04-03T00:00:00")
+                idExpirationDate = "2030-04-03T00:00:00"
             ),
             personBasicInfo = PersonBasicInfo(
-                birthDateG = LocalDateTime.parse("1978-10-21T00:00:00"),
+                birthDateG = "1978-10-21T00:00:00",
                 familyName = "العتيبي",
                 familyNameT = "ALOTAIBI",
                 fatherName = "شويط",
