@@ -210,6 +210,7 @@ class MockController {
 
     @PostMapping("/callback")
     fun callback(@RequestBody data: CallbackPayload): CallbackPayload {
+        println("callback done")
         return data
     }
 
