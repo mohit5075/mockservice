@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController
 import org.springframework.web.client.RestTemplate
 
 data class FailedCallbackCheckRequest(
-    @JsonProperty("taskName")
+    @JsonProperty("data")
     val taskNameObject: FailedWorkflowInput,
     @JsonProperty("callbackurl")
     val callbackurl: String
