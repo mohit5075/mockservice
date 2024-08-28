@@ -13,11 +13,13 @@ data class CallbackPayload(
     @JsonProperty("data")
     val data: Any,
     @JsonProperty("message")
-    val message: String
+    val message: String,
+    @JsonProperty("statusCode")
+    val statusCode: Int
 )
 data class CallbackTaskPayload(
     @JsonProperty("callbackurl")
-    val callbackurl: String,
+    val callbackurl: String?,
     @JsonProperty("data")
     val data: Any
 )
@@ -33,10 +35,12 @@ class ControllerCallback( val restTemplate: RestTemplate) {
             }
             val transformedBody = CallbackPayload(
                 data = requestBody.data,
-                message = "SUCCESS"
+                message = "SUCCESS",
+                statusCode = 200
             )
             val entity = HttpEntity(transformedBody, headers)
-            return restTemplate.postForObject(url,entity, CallbackPayload::class.java).toString()
+            restTemplate.postForObject(url,entity, CallbackPayload::class.java)
+            return "Request sent to callback"
         }
         return "callback is not present"
     }
