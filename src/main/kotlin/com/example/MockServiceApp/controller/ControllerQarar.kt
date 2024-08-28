@@ -1,5 +1,6 @@
 package com.example.MockServiceApp.controller
 
+import com.example.MockServiceApp.controller.utils.CallbackPayload
 import com.fasterxml.jackson.annotation.JsonProperty
 import org.springframework.web.bind.annotation.*
 data class AuthorizeData(
@@ -141,7 +142,7 @@ data class SampleResponse(
 
 @RestController
 class MockController {
-    @PostMapping("/process")
+    @PostMapping("/qarar")
     fun processRequest(@RequestBody request: SampleRequest): SampleResponse {
         val response = SampleResponse(
             status = "Success "+request.UserName,
@@ -208,7 +209,7 @@ class MockController {
     }
 
     @PostMapping("/callback")
-    fun callback(@RequestBody data: CallbackRequest): CallbackRequest {
+    fun callback(@RequestBody data: CallbackPayload): CallbackPayload {
         return data
     }
 
