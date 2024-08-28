@@ -11,9 +11,71 @@ import org.springframework.web.client.RestTemplate
 
 data class FailedCallbackCheckRequest(
     @JsonProperty("taskName")
-    val taskName: String,
+    val taskNameObject: FailedWorkflowInput,
     @JsonProperty("callbackurl")
     val callbackurl: String
+)
+
+data class FailedWorkflowInput(
+    @JsonProperty("status")
+    val status: String,
+
+    @JsonProperty("endTime")
+    val endTime: Long,
+
+    @JsonProperty("workflowId")
+    val workflowId: String,
+
+    @JsonProperty("tasks")
+    val tasks: List<Any>,
+
+    @JsonProperty("reasonForIncompletion")
+    val reasonForIncompletion: String,
+
+    @JsonProperty("failedReferenceTaskNames")
+    val failedReferenceTaskNames: List<String>,
+
+    @JsonProperty("failedTaskNames")
+    val failedTaskNames: List<String>,
+
+    @JsonProperty("workflowDefinition")
+    val workflowDefinition: Map<String, Any>,
+
+    @JsonProperty("priority")
+    val priority: Int,
+
+    @JsonProperty("variables")
+    val variables: Map<String, Any>,
+
+    @JsonProperty("lastRetriedTime")
+    val lastRetriedTime: Long,
+
+    @JsonProperty("ownerApp")
+    val ownerApp: String,
+
+    @JsonProperty("createTime")
+    val createTime: Long,
+
+    @JsonProperty("updatedTime")
+    val updatedTime: Long,
+
+    @JsonProperty("failedTaskId")
+    val failedTaskId: String,
+
+    @JsonProperty("previousStatus")
+    val previousStatus: String,
+
+    @JsonProperty("workflowName")
+    val workflowName: String,
+
+    @JsonProperty("workflowVersion")
+    val workflowVersion: Int,
+
+    @JsonProperty("input")
+    val input: Map<String, Any>,
+
+    @JsonProperty("output")
+    val output: Map<String, Any>
 )
 
 //data class PayloadFailedWorkflow(
@@ -34,7 +96,7 @@ class ControllerFailedWorkflow(val restTemplate: RestTemplate) {
             }
             val transformedBody = CallbackPayload(
                 data = {},
-                message = requestFailedWorkflow.taskName+" failed",
+                message = requestFailedWorkflow.taskNameObject.failedTaskNames[0]+" failed",
                 statusCode = 500
             )
             val entity = HttpEntity(transformedBody, headers)
