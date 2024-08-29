@@ -148,7 +148,7 @@ class MockController {
     @PostMapping("/qarar")
     fun processRequest(@RequestBody request: SampleRequest): SampleResponse {
         val response = SampleResponse(
-            status = "Success "+request.UserName,
+            status = "Success",
             requestType = "Finzey",
             commandType = "FinalDecision",
             responseData = ResponseData(
@@ -213,7 +213,6 @@ class MockController {
 
     @PostMapping("/callback")
     fun callback(@RequestBody data: CallbackPayload): CallbackPayload {
-        println(data.toString())
         return data
     }
 
