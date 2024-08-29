@@ -13,7 +13,7 @@ data class FailedCallbackCheckRequest(
     @JsonProperty("data")
     val taskNameObject: FailedWorkflowInput,
     @JsonProperty("callbackurl")
-    val callbackurl: String,
+    val callbackurl: String?,
     @JsonProperty("trace-id")
     val traceId: String?
 )
