@@ -13,7 +13,9 @@ data class FailedCallbackCheckRequest(
     @JsonProperty("data")
     val taskNameObject: FailedWorkflowInput,
     @JsonProperty("callbackurl")
-    val callbackurl: String
+    val callbackurl: String,
+    @JsonProperty("trace-id")
+    val traceId: String?
 )
 
 data class FailedWorkflowInput(
@@ -93,11 +95,13 @@ class ControllerFailedWorkflow(val restTemplate: RestTemplate) {
         if(url!=null && url!=""){
             val headers = HttpHeaders().apply {
                 contentType = MediaType.APPLICATION_JSON
+                add("trace-id",requestFailedWorkflow.traceId)
             }
+            val taskname = requestFailedWorkflow.taskNameObject.failedTaskNames[0]
             val transformedBody = CallbackPayload(
                 data = {},
                 message = requestFailedWorkflow.taskNameObject.failedTaskNames[0]+" failed",
-                statusCode = 500
+                statusCode = if (taskname == "Token Validation") 403 else 500
             )
             val entity = HttpEntity(transformedBody, headers)
             restTemplate.postForObject(url,entity, CallbackPayload::class.java)

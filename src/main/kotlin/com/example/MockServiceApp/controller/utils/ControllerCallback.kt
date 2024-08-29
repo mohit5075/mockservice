@@ -21,7 +21,9 @@ data class CallbackTaskPayload(
     @JsonProperty("callbackurl")
     val callbackurl: String?,
     @JsonProperty("data")
-    val data: Any
+    val data: Any,
+    @JsonProperty("trace-id")
+    val traceId: String?
 )
 
 @RestController
@@ -32,6 +34,7 @@ class ControllerCallback( val restTemplate: RestTemplate) {
         if(url!=null && url!=""){
             val headers = HttpHeaders().apply {
                 contentType = MediaType.APPLICATION_JSON
+                add("trace-id",requestBody.traceId)
             }
             val transformedBody = CallbackPayload(
                 data = requestBody.data,
