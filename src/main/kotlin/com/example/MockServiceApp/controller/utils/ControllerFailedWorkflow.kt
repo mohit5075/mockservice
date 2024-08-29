@@ -1,9 +1,7 @@
 package com.example.MockServiceApp.controller.utils
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import org.springframework.http.HttpEntity
-import org.springframework.http.HttpHeaders
-import org.springframework.http.MediaType
+import org.springframework.http.*
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -90,7 +88,7 @@ data class FailedWorkflowInput(
 @RestController
 class ControllerFailedWorkflow(val restTemplate: RestTemplate) {
     @PostMapping("/failedCallbackCheck")
-    fun failedCallbackCheck(@RequestBody requestFailedWorkflow: FailedCallbackCheckRequest):String{
+    fun failedCallbackCheck(@RequestBody requestFailedWorkflow: FailedCallbackCheckRequest):ResponseEntity<String>{
         val url = requestFailedWorkflow.callbackurl
         if(url!=null && url!=""){
             val headers = HttpHeaders().apply {
@@ -105,8 +103,8 @@ class ControllerFailedWorkflow(val restTemplate: RestTemplate) {
             )
             val entity = HttpEntity(transformedBody, headers)
             restTemplate.postForObject(url,entity, CallbackPayload::class.java)
-            return "Request sent to callback"
+            return ResponseEntity("Request sent to callback", HttpStatus.OK)
         }
-        return "callbackurl is not present"
+        return ResponseEntity("Request sent to callback", HttpStatus.BAD_REQUEST)
     }
 }

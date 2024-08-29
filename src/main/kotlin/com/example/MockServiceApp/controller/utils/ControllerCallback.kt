@@ -1,9 +1,7 @@
 package com.example.MockServiceApp.controller.utils
 
 import com.fasterxml.jackson.annotation.JsonProperty
-import org.springframework.http.HttpEntity
-import org.springframework.http.HttpHeaders
-import org.springframework.http.MediaType
+import org.springframework.http.*
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
@@ -29,7 +27,7 @@ data class CallbackTaskPayload(
 @RestController
 class ControllerCallback( val restTemplate: RestTemplate) {
     @PostMapping("/checkCallback")
-    fun checkCallback(@RequestBody requestBody: CallbackTaskPayload):String{
+    fun checkCallback(@RequestBody requestBody: CallbackTaskPayload):ResponseEntity<String>{
         val url = requestBody.callbackurl
         if(url!=null && url!=""){
             val headers = HttpHeaders().apply {
@@ -43,8 +41,8 @@ class ControllerCallback( val restTemplate: RestTemplate) {
             )
             val entity = HttpEntity(transformedBody, headers)
             restTemplate.postForObject(url,entity, CallbackPayload::class.java)
-            return "Request sent to callback"
+            return ResponseEntity("Request sent to callback", HttpStatus.OK)
         }
-        return "callback is not present"
+        return ResponseEntity("callback is not present", HttpStatus.BAD_REQUEST)
     }
 }
