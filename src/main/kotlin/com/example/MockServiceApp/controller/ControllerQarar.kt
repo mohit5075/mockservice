@@ -70,7 +70,10 @@ data class SampleRequest(
     val RequestType: String,
     val Data: RequestData
 )
-
+data class ResultOutputValue(
+    @JsonProperty("ResultOutput")
+    val ResultOutput: ResultOutput
+)
 data class ResultOutput(
     @JsonProperty("Name")
     val Name: String,
@@ -107,7 +110,7 @@ data class ExecuteDecisionSmartResult(
     @JsonProperty("DecisionFlowVersionNo")
     val DecisionFlowVersionNo: String,
     @JsonProperty("DecisionSmartResults")
-    val DecisionSmartResults: List<ResultOutput>
+    val DecisionSmartResults: List<ResultOutputValue>
 )
 
 data class ExecuteDecisionSmartResponse(
@@ -159,35 +162,35 @@ class MockController {
                             DecisionFlowId = "3",
                             DecisionFlowVersionNo = "11",
                             DecisionSmartResults = listOf(
-                                ResultOutput("Score", "215.0000000000"),
-                                ResultOutput("BureauScore", "661"),
-                                ResultOutput("KnockOutStageDecision", ""),
-                                ResultOutput("KnockOutStageRejectReason", ""),
-                                ResultOutput("PostBureauStageDecision", ""),
-                                ResultOutput("PostBureauStageRejectReason", ""),
-                                ResultOutput("FinalDecisionReason", null),
-                                ResultOutput("FinalDecision", "Accept"),
-                                ResultOutput("COLMResFoodBeverage", "563.451845794325"),
-                                ResultOutput("COLMResHousing", "1108.62675"),
-                                ResultOutput("COLMResUtilities", "55.6516120857578"),
-                                ResultOutput("COLMResHealthcare", "0"),
-                                ResultOutput("COLMResTransportation", "0"),
-                                ResultOutput("COLMResCommunication", "0"),
-                                ResultOutput("COLMResEducation", "0"),
-                                ResultOutput("COLMResHouseHelp", "0"),
-                                ResultOutput("COLMResExpatsTax", "0"),
-                                ResultOutput("COLMResOtherExpenses", "44"),
-                                ResultOutput("TotalCreditCommitments", "4467.21"),
-                                ResultOutput("TotalNonCreditCommitments", "6011.451845794325"),
-                                ResultOutput("MaxInstAmt", "15151.165"),
-                                ResultOutput("MaxEligAmt", "17547.588154205674"),
-                                ResultOutput("RequestedTenure", "12"),
-                                ResultOutput("RequestedTenureEligAmt", "181813.98"),
-                                ResultOutput("TotalNetMonthlyIncome", "28026.25"),
-                                ResultOutput("LengthOfService", "456"),
-                                ResultOutput("AgeAtApplicationGregorianInYears", "22.35"),
-                                ResultOutput("TotalCreditCommitmentsNonMortFlag", "True"),
-                                ResultOutput("NoObligFlag", "False")
+                                ResultOutputValue(ResultOutput("Score", "215.0000000000")),
+                                ResultOutputValue(ResultOutput("BureauScore", "661")),
+                                ResultOutputValue(ResultOutput("KnockOutStageDecision", "")),
+                                ResultOutputValue(ResultOutput("KnockOutStageRejectReason", "")),
+                                ResultOutputValue(ResultOutput("PostBureauStageDecision", "")),
+                                ResultOutputValue(ResultOutput("PostBureauStageRejectReason", "")),
+                                ResultOutputValue(ResultOutput("FinalDecisionReason", null)),
+                                ResultOutputValue(ResultOutput("FinalDecision", "Accept")),
+                                ResultOutputValue(ResultOutput("COLMResFoodBeverage", "563.451845794325")),
+                                ResultOutputValue(ResultOutput("COLMResHousing", "1108.62675")),
+                                ResultOutputValue(ResultOutput("COLMResUtilities", "55.6516120857578")),
+                                ResultOutputValue(ResultOutput("COLMResHealthcare", "0")),
+                                ResultOutputValue(ResultOutput("COLMResTransportation", "0")),
+                                ResultOutputValue(ResultOutput("COLMResCommunication", "0")),
+                                ResultOutputValue(ResultOutput("COLMResEducation", "0")),
+                                ResultOutputValue(ResultOutput("COLMResHouseHelp", "0")),
+                                ResultOutputValue(ResultOutput("COLMResExpatsTax", "0")),
+                                ResultOutputValue(ResultOutput("COLMResOtherExpenses", "44")),
+                                ResultOutputValue(ResultOutput("TotalCreditCommitments", "4467.21")),
+                                ResultOutputValue(ResultOutput("TotalNonCreditCommitments", "6011.451845794325")),
+                                ResultOutputValue(ResultOutput("MaxInstAmt", "15151.165")),
+                                ResultOutputValue(ResultOutput("MaxEligAmt", "17547.588154205674")),
+                                ResultOutputValue(ResultOutput("RequestedTenure", "12")),
+                                ResultOutputValue(ResultOutput("RequestedTenureEligAmt", "181813.98")),
+                                ResultOutputValue(ResultOutput("TotalNetMonthlyIncome", "28026.25")),
+                                ResultOutputValue(ResultOutput("LengthOfService", "456")),
+                                ResultOutputValue(ResultOutput("AgeAtApplicationGregorianInYears", "22.35")),
+                                ResultOutputValue(ResultOutput("TotalCreditCommitmentsNonMortFlag", "True")),
+                                ResultOutputValue(ResultOutput("NoObligFlag", "False"))
                             )
                         )
                     ),
