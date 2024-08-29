@@ -38,12 +38,12 @@ class ControllerTokenValidation {
         // Compare the tenant-id in the request body with the one in the token
         if (tenantIdFromToken != null) {
             if (tenantIdFromToken.trim() != request.tenantId.trim()) {
-                return ResponseEntity("tenant-id is not matching", HttpStatus.INTERNAL_SERVER_ERROR)
+                return ResponseEntity("tenant-id is not matching", HttpStatus.UNAUTHORIZED)
             }else {
                 return ResponseEntity("Success Token is valid and tenant-id is matching", HttpStatus.OK)
             }
         }else{
-            return ResponseEntity("Token Invalid", HttpStatus.INTERNAL_SERVER_ERROR)
+            return ResponseEntity("Token Invalid", HttpStatus.UNAUTHORIZED)
         }
     }
 }
