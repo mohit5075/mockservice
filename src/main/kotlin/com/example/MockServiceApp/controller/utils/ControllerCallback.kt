@@ -27,22 +27,27 @@ data class CallbackTaskPayload(
 @RestController
 class ControllerCallback( val restTemplate: RestTemplate) {
     @PostMapping("/checkCallback")
-    fun checkCallback(@RequestBody requestBody: CallbackTaskPayload):ResponseEntity<String>{
-        val url = requestBody.callbackurl
-        if(url!=null && url!=""){
-            val headers = HttpHeaders().apply {
-                contentType = MediaType.APPLICATION_JSON
-                add("trace-id",requestBody.traceId)
+    fun checkCallback(@RequestBody requestBody: CallbackTaskPayload): ResponseEntity<String> {
+        return try {
+            val url = requestBody.callbackurl
+            if (url != null && url != "") {
+                val headers = HttpHeaders().apply {
+                    contentType = MediaType.APPLICATION_JSON
+                    add("trace-id", requestBody.traceId)
+                }
+                val transformedBody = CallbackPayload(
+                    data = requestBody.data,
+                    message = "SUCCESS",
+                    statusCode = 200
+                )
+                val entity = HttpEntity(transformedBody, headers)
+                restTemplate.postForObject(url, entity, CallbackPayload::class.java)
+                return ResponseEntity("Request sent to callback", HttpStatus.OK)
             }
-            val transformedBody = CallbackPayload(
-                data = requestBody.data,
-                message = "SUCCESS",
-                statusCode = 200
-            )
-            val entity = HttpEntity(transformedBody, headers)
-            restTemplate.postForObject(url,entity, CallbackPayload::class.java)
-            return ResponseEntity("Request sent to callback", HttpStatus.OK)
+            return ResponseEntity("callback is not present", HttpStatus.BAD_REQUEST)
+        } catch (ex: Exception) {
+            // Return a generic error message if an exception occurs
+            ResponseEntity("An error occurred: ${ex.message}", HttpStatus.INTERNAL_SERVER_ERROR)
         }
-        return ResponseEntity("callback is not present", HttpStatus.BAD_REQUEST)
     }
 }

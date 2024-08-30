@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RestController
 
 // Request Data Class
-
 data class TokenValidationRequestBody(
     @JsonProperty("tenant-id")
     val tenantId: String,
@@ -29,21 +28,27 @@ class TokenValidationException(message: String) : RuntimeException(message)
 class ControllerTokenValidation {
 
     @PostMapping("/tokenValidation")
-    fun checkCallback(@RequestBody request: TokenValidationRequestBody): ResponseEntity<String>{
-        // Decode the JWT
-        val jwt = JWT.decode(request.accessToken)
+    fun checkCallback(@RequestBody request: TokenValidationRequestBody): ResponseEntity<String> {
+        return try {
+            // Decode the JWT
+            val jwt = decodeJWT(request.accessToken)
 
-        // Extract the tenant-id from the "metadata" object in the payload
-        val tenantIdFromToken = jwt.getClaim("metadata").asMap()?.get("tenant-id") as? String
-        // Compare the tenant-id in the request body with the one in the token
-        if (tenantIdFromToken != null) {
-            if (tenantIdFromToken.trim() != request.tenantId.trim()) {
-                return ResponseEntity("tenant-id is not matching", HttpStatus.UNAUTHORIZED)
-            }else {
-                return ResponseEntity("Success Token is valid and tenant-id is matching", HttpStatus.OK)
+            // Extract the tenant-id from the "metadata" object in the payload
+            val tenantIdFromToken = jwt.getClaim("metadata").asMap()?.get("tenant-id") as? String
+
+            // Compare the tenant-id in the request body with the one in the token
+            if (tenantIdFromToken != null) {
+                if (tenantIdFromToken.trim() != request.tenantId.trim()) {
+                    ResponseEntity("tenant-id is not matching", HttpStatus.UNAUTHORIZED)
+                } else {
+                    ResponseEntity("Success! Token is valid and tenant-id is matching", HttpStatus.OK)
+                }
+            } else {
+                ResponseEntity("Token Invalid", HttpStatus.UNAUTHORIZED)
             }
-        }else{
-            return ResponseEntity("Token Invalid", HttpStatus.UNAUTHORIZED)
+        } catch (ex: Exception) {
+            // Return a generic error message if an exception occurs
+            ResponseEntity("An error occurred: ${ex.message}", HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
 }
