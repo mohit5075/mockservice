@@ -88,7 +88,7 @@ data class FailedWorkflowInput(
 @RestController
 class ControllerFailedWorkflow(val restTemplate: RestTemplate) {
     @PostMapping("/failedCallbackCheck")
-    fun failedCallbackCheck(@RequestBody requestFailedWorkflow: FailedCallbackCheckRequest): ResponseEntity<String> {
+    fun failedCallbackCheck(@RequestBody requestFailedWorkflow: FailedCallbackCheckRequest): ResponseEntity<ResponseMessage> {
         return try {
             val url = requestFailedWorkflow.callbackurl
             if (url != null && url != "") {
@@ -104,12 +104,12 @@ class ControllerFailedWorkflow(val restTemplate: RestTemplate) {
                 )
                 val entity = HttpEntity(transformedBody, headers)
                 restTemplate.postForObject(url, entity, CallbackPayload::class.java)
-                return ResponseEntity("Request sent to callback", HttpStatus.OK)
+                return ResponseEntity(ResponseMessage("Request sent to callback"), HttpStatus.OK)
             }
-            return ResponseEntity("Request sent to callback", HttpStatus.BAD_REQUEST)
+            return ResponseEntity(ResponseMessage("Request sent to callback"), HttpStatus.BAD_REQUEST)
         } catch (ex: Exception) {
             // Return a generic error message if an exception occurs
-            ResponseEntity("An error occurred: ${ex.message}", HttpStatus.INTERNAL_SERVER_ERROR)
+            ResponseEntity(ResponseMessage("An error occurred: ${ex.message}"), HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
 }

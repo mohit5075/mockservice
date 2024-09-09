@@ -1,4 +1,4 @@
-	package com.example.MockServiceApp
+package com.example.MockServiceApp
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication

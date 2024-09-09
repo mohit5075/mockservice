@@ -28,7 +28,7 @@ class TokenValidationException(message: String) : RuntimeException(message)
 class ControllerTokenValidation {
 
     @PostMapping("/tokenValidation")
-    fun checkCallback(@RequestBody request: TokenValidationRequestBody): ResponseEntity<String> {
+    fun checkCallback(@RequestBody request: TokenValidationRequestBody): ResponseEntity<ResponseMessage> {
         return try {
             // Decode the JWT
             val jwt = decodeJWT(request.accessToken)
@@ -39,16 +39,16 @@ class ControllerTokenValidation {
             // Compare the tenant-id in the request body with the one in the token
             if (tenantIdFromToken != null) {
                 if (tenantIdFromToken.trim() != request.tenantId.trim()) {
-                    ResponseEntity("tenant-id is not matching", HttpStatus.UNAUTHORIZED)
+                    ResponseEntity(ResponseMessage("tenant-id is not matching"), HttpStatus.FORBIDDEN)
                 } else {
-                    ResponseEntity("Success! Token is valid and tenant-id is matching", HttpStatus.OK)
+                    ResponseEntity(ResponseMessage("Success! Token is valid and tenant-id is matching"), HttpStatus.OK)
                 }
             } else {
-                ResponseEntity("Token Invalid", HttpStatus.UNAUTHORIZED)
+                ResponseEntity(ResponseMessage("Token Invalid"), HttpStatus.FORBIDDEN)
             }
         } catch (ex: Exception) {
             // Return a generic error message if an exception occurs
-            ResponseEntity("An error occurred: ${ex.message}", HttpStatus.INTERNAL_SERVER_ERROR)
+            ResponseEntity(ResponseMessage("An error occurred: ${ex.message}"), HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
 }

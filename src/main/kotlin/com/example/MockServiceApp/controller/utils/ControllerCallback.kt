@@ -23,11 +23,14 @@ data class CallbackTaskPayload(
     @JsonProperty("trace-id")
     val traceId: String?
 )
+data class ResponseMessage(
+    val message: String
+)
 
 @RestController
 class ControllerCallback( val restTemplate: RestTemplate) {
     @PostMapping("/checkCallback")
-    fun checkCallback(@RequestBody requestBody: CallbackTaskPayload): ResponseEntity<String> {
+    fun checkCallback(@RequestBody requestBody: CallbackTaskPayload): ResponseEntity<ResponseMessage> {
         return try {
             val url = requestBody.callbackurl
             if (url != null && url != "") {
@@ -42,12 +45,12 @@ class ControllerCallback( val restTemplate: RestTemplate) {
                 )
                 val entity = HttpEntity(transformedBody, headers)
                 restTemplate.postForObject(url, entity, CallbackPayload::class.java)
-                return ResponseEntity("Request sent to callback", HttpStatus.OK)
+                return ResponseEntity(ResponseMessage("Request sent to callback"), HttpStatus.OK)
             }
-            return ResponseEntity("callback is not present", HttpStatus.BAD_REQUEST)
+            return ResponseEntity(ResponseMessage("callback is not present"), HttpStatus.BAD_REQUEST)
         } catch (ex: Exception) {
             // Return a generic error message if an exception occurs
-            ResponseEntity("An error occurred: ${ex.message}", HttpStatus.INTERNAL_SERVER_ERROR)
+            ResponseEntity(ResponseMessage("An error occurred: ${ex.message}"), HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
 }
