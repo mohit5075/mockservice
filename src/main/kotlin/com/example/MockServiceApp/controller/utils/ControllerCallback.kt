@@ -50,7 +50,7 @@ class ControllerCallback( val restTemplate: RestTemplate) {
             return ResponseEntity(ResponseMessage("callback is not present"), HttpStatus.BAD_REQUEST)
         } catch (ex: Exception) {
             // Return a generic error message if an exception occurs
-            ResponseEntity(ResponseMessage("An error occurred: ${ex.message}"), HttpStatus.INTERNAL_SERVER_ERROR)
+            ResponseEntity(ResponseMessage("An error occurred while making callback request"), HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
 }

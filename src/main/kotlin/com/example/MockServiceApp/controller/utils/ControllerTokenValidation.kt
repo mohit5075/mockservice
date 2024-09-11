@@ -48,7 +48,7 @@ class ControllerTokenValidation {
             }
         } catch (ex: Exception) {
             // Return a generic error message if an exception occurs
-            ResponseEntity(ResponseMessage("An error occurred: ${ex.message}"), HttpStatus.INTERNAL_SERVER_ERROR)
+            ResponseEntity(ResponseMessage("An error occurred: Token Validation"), HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
 }

@@ -109,7 +109,7 @@ class ControllerFailedWorkflow(val restTemplate: RestTemplate) {
             return ResponseEntity(ResponseMessage("Request sent to callback"), HttpStatus.BAD_REQUEST)
         } catch (ex: Exception) {
             // Return a generic error message if an exception occurs
-            ResponseEntity(ResponseMessage("An error occurred: ${ex.message}"), HttpStatus.INTERNAL_SERVER_ERROR)
+            ResponseEntity(ResponseMessage("An error occurred while making callback request"), HttpStatus.INTERNAL_SERVER_ERROR)
         }
     }
 }
