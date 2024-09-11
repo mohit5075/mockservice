@@ -2,6 +2,9 @@ package com.example.MockServiceApp.controller
 
 import com.example.MockServiceApp.controller.utils.CallbackPayload
 import com.fasterxml.jackson.annotation.JsonProperty
+import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.SerializationFeature
+import org.slf4j.LoggerFactory
 import org.springframework.web.bind.annotation.*
 data class AuthorizeData(
     @JsonProperty("accessToken")
@@ -145,6 +148,10 @@ data class SampleResponse(
 
 @RestController
 class MockController {
+
+    private val logger = LoggerFactory.getLogger(CallbackPayload::class.java)
+    private val objectMapper = ObjectMapper().enable(SerializationFeature.INDENT_OUTPUT)
+
     @PostMapping("/qarar")
     fun processRequest(@RequestBody request: SampleRequest): SampleResponse {
         val response = SampleResponse(
@@ -213,6 +220,12 @@ class MockController {
 
     @PostMapping("/callback")
     fun callback(@RequestBody data: CallbackPayload): CallbackPayload {
+        // Convert the payload to pretty JSON
+        val jsonData = objectMapper.writeValueAsString(data)
+
+        // Log the pretty-printed JSON
+        logger.info("Received callback data:\n$jsonData")
+
         return data
     }
 
