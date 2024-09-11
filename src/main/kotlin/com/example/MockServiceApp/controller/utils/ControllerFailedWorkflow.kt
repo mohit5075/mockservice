@@ -98,7 +98,7 @@ class ControllerFailedWorkflow(val restTemplate: RestTemplate) {
                 }
                 val taskname = requestFailedWorkflow.taskNameObject.failedTaskNames[0]
                 val transformedBody = CallbackPayload(
-                    data = {},
+                    data = object {},
                     message = requestFailedWorkflow.taskNameObject.failedTaskNames[0] + " failed",
                     statusCode = CustomStatusCode.getStatusCode(taskname)
                 )
