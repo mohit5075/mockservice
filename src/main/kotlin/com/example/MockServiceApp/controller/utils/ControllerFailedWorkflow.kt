@@ -106,7 +106,7 @@ class ControllerFailedWorkflow(val restTemplate: RestTemplate) {
                 restTemplate.postForObject(url, entity, CallbackPayload::class.java)
                 return ResponseEntity(ResponseMessage("Request sent to callback"), HttpStatus.OK)
             }
-            return ResponseEntity(ResponseMessage("Request sent to callback"), HttpStatus.BAD_REQUEST)
+            return ResponseEntity(ResponseMessage("Callback is not present"), HttpStatus.OK)
         } catch (ex: Exception) {
             // Return a generic error message if an exception occurs
             ResponseEntity(ResponseMessage("An error occurred while making callback request"), HttpStatus.INTERNAL_SERVER_ERROR)

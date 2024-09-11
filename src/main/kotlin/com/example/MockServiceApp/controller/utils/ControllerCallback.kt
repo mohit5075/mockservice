@@ -47,7 +47,7 @@ class ControllerCallback( val restTemplate: RestTemplate) {
                 restTemplate.postForObject(url, entity, CallbackPayload::class.java)
                 return ResponseEntity(ResponseMessage("Request sent to callback"), HttpStatus.OK)
             }
-            return ResponseEntity(ResponseMessage("callback is not present"), HttpStatus.BAD_REQUEST)
+            return ResponseEntity(ResponseMessage("callback is not present"), HttpStatus.OK)
         } catch (ex: Exception) {
             // Return a generic error message if an exception occurs
             ResponseEntity(ResponseMessage("An error occurred while making callback request"), HttpStatus.INTERNAL_SERVER_ERROR)
