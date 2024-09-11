@@ -5,6 +5,7 @@ import com.fasterxml.jackson.databind.PropertyNamingStrategies
 import com.fasterxml.jackson.module.kotlin.jacksonObjectMapper
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
 import org.springframework.web.client.RestTemplate
 
 @Configuration
@@ -18,7 +19,10 @@ class MockConfig {
 
     @Bean
     fun restTemplate(): RestTemplate {
-        return RestTemplate()
+        val requestFactory = HttpComponentsClientHttpRequestFactory().apply {
+            setConnectTimeout(1000) // 1 second for connection timeout
+        }
+        return RestTemplate(requestFactory)
     }
 
 }
