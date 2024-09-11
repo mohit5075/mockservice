@@ -100,7 +100,7 @@ class ControllerFailedWorkflow(val restTemplate: RestTemplate) {
                 val transformedBody = CallbackPayload(
                     data = {},
                     message = requestFailedWorkflow.taskNameObject.failedTaskNames[0] + " failed",
-                    statusCode = if (taskname == "Token Validation") 403 else 500
+                    statusCode = CustomStatusCode.getStatusCode(taskname)
                 )
                 val entity = HttpEntity(transformedBody, headers)
                 restTemplate.postForObject(url, entity, CallbackPayload::class.java)
